@@ -11,6 +11,9 @@ pipeline {
         stage('Clone halm-chart'){
             steps{
                 git 'https://github.com/Cheeelick/TZ.git'
+                script{
+                    echo "pwd"
+                }
             }
         }
     
@@ -18,10 +21,12 @@ pipeline {
         stage('Install halm-chart repo'){
             steps{
                 script{
-                    sh 'helm install web-app ./TZ/chart_nginx'
+                    sh 'helm list'
                 }
             }
         }
+
+        // install web-app ./TZ/chart_nginx
 
         stage('Get ClusterIP') {
             steps {
