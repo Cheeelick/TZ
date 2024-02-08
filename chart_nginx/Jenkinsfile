@@ -13,16 +13,7 @@ pipeline {
                 git 'https://github.com/Cheeelick/TZ.git'
             }
         }
-        
-        stage('Install halm'){
-            steps{
-                script{
-                    sh 'curl -LO https://get.helm.sh/helm-v3.7.0-linux-amd64.tar.gz'
-                    sh 'tar -zxvf helm-v3.7.0-linux-amd64.tar.gz'
-                    sh 'mv linux-amd64/helm /usr/local/bin/helm'
-                }
-            }
-        }
+    
 
         stage('Install halm-chart repo'){
             steps{
