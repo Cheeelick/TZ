@@ -13,8 +13,20 @@ pipeline {
                 git 'https://github.com/Cheeelick/TZ.git'
             }
         }
+        
+        stage('Install halm'){
+            steps{
+                script{
+                    sh """
+                    curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 \
+                    chmod 700 get_helm.sh \
+                    ./get_helm.sh
+                    """
+                }
+            }
+        }
 
-        stage('Install halm-chart'){
+        stage('Install halm-chart repo'){
             steps{
                 script{
                     sh 'helm install web-app ./TZ/chart_nginx'
