@@ -17,7 +17,7 @@ pipeline {
         stage('Install halm-chart'){
             steps{
                 script{
-                    sh 'helm install web-app ./chart_nginx'
+                    sh 'helm install web-app ./TZ/chart_nginx'
                 }
             }
         }
