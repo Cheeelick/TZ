@@ -19,10 +19,22 @@ pipeline {
     
 
         stage('Install halm-chart repo'){
-            steps{
-                script{
-                    sh 'helm list'
+            
+            agent {
+                kubernetes {
+                    containerTemplate {
+                        name 'helm'
+                        image 'lachlanevenson/k8s-helm:latest'
+                        ttyEnabled true
+                        command 'cat'
+                    }
                 }
+            }
+            
+            steps{
+                container('helm') { 
+                    sh "helm list"
+               } 
             }
         }
 
