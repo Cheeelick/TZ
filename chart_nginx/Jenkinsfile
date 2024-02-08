@@ -1,0 +1,42 @@
+pipeline {
+    agent any
+
+    environment {
+        SERVICE_NAME = 'tz-service'
+        NAMESPACE = 'default'
+    }
+
+    stages {
+
+        stage('Clone halm-chart'){
+            steps{
+                git 'https://github.com/Cheeelick/TZ.git'
+            }
+        }
+
+        stage('Install halm-chart'){
+            steps{
+                script{
+                    sh 'helm install web-app ./chart_nginx'
+                }
+            }
+        }
+
+        stage('Get ClusterIP') {
+            steps {
+                script {
+                    CLUSTER_IP = sh(script: "kubectl get svc ${SERVICE_NAME} -n ${NAMESPACE} -o jsonpath='{.spec.clusterIP}'", returnStdout: true).trim()
+                    echo "ClusterIP is ${CLUSTER_IP}"
+                }
+            }
+        }
+
+        stage('Use ClusterIP') {
+            steps {
+                script {
+                    sh "curl http://${CLUSTER_IP}:32080"
+                }
+            }
+        }
+    }
+}
