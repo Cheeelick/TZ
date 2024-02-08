@@ -24,7 +24,7 @@ pipeline {
             
             steps {
                 script { 
-                    sh "mv /home/jenkins/agent/tools/hudson.tasks.Maven_MavenInstallation/helm /usr/local/bin/helm"
+                    sh "sudo mv /home/jenkins/agent/tools/hudson.tasks.Maven_MavenInstallation/helm /usr/local/bin/helm"
                } 
             }
         }
