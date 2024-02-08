@@ -18,19 +18,12 @@ pipeline {
 
         stage('Install halm-chart repo'){
             
-            agent {
-                minikube {
-                    containerTemplate {
-                        name 'helm'
-                        image 'lachlanevenson/k8s-helm:latest'
-                        ttyEnabled true
-                        command 'cat'
-                    }
-                }
+            tools {
+                maven 'helm'
             }
             
-            steps{
-                container('helm') { 
+            steps {
+                script { 
                     sh "helm"
                } 
             }
