@@ -11,9 +11,7 @@ pipeline {
         stage('Clone halm-chart'){
             steps{
                 git 'https://github.com/Cheeelick/TZ.git'
-                script{
-                    echo "pwd"
-                }
+
             }
         }
     
@@ -21,7 +19,7 @@ pipeline {
         stage('Install halm-chart repo'){
             
             agent {
-                kubernetes {
+                minikube {
                     containerTemplate {
                         name 'helm'
                         image 'lachlanevenson/k8s-helm:latest'
@@ -33,7 +31,7 @@ pipeline {
             
             steps{
                 container('helm') { 
-                    sh "helm list"
+                    sh "helm"
                } 
             }
         }
