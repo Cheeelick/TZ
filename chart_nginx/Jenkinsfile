@@ -16,8 +16,10 @@ pipeline {
     
 
         stage('Install my helm_chart'){
-            script{
-                sh "helm install web-app ./TZ/chart_nginx"
+            steps {
+                script{
+                    sh "helm install web-app ./TZ/chart_nginx"
+                }
             }
         }
 
@@ -38,5 +40,5 @@ pipeline {
                 }
             }
         }
-    }
+    
 }
