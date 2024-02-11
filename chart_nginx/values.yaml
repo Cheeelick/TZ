@@ -1,2 +1,6 @@
-container:
-  image: nginx:latest
+controller:
+  image:
+    repository: artemka222/my_jenkins
+    tag: latest
+    installPlugins: true
+
