@@ -1,6 +1,4 @@
 controller:
-  image:
-    repository: artemka222/my_jenkins
-    tag: latest
-    installPlugins: true
-
+  image: "docker.io/artemka222/my_jenkins"
+  tag: "latest"
+  installPlugins: false
