@@ -12,5 +12,4 @@
 После удачного скачивания будем предлоджено запустить комманды для вывода пароля админа и запуска сервра jenkins
   kubectl exec --namespace default -it svc/my_jenkins_helm -c jenkins -- /bin/cat /run/secrets/additional/chart-admin-password && echo
   kubectl --namespace default port-forward svc/myjenkinshelm 8080:8080
-Но безуспешно(((
-Пытался развернуть deploy jenkins внутри миникуба но не получалось установить default нвстройки для jenkins-slave и jenkins-master
+
